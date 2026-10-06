@@ -1,13 +1,12 @@
-// 1. Initialize player stats
+// Initialize player stats
 let grades = 50;
 let sanity = 50;
 let housemates = 50;
 let money = 50;
 let house_state = 50;
 
-// 2. Function to update the on-screen numbers
+// Function to update the on-screen numbers
 function updateDisplay() {
-    // This looks for HTML elements with these IDs and updates their text
     if (document.getElementById('grades')) document.getElementById('grades').innerText = grades;
     if (document.getElementById('sanity')) document.getElementById('sanity').innerText = sanity;
     if (document.getElementById('housemates')) document.getElementById('housemates').innerText = housemates;
@@ -15,17 +14,15 @@ function updateDisplay() {
     if (document.getElementById('house_state')) document.getElementById('house_state').innerText = house_state;
 }
 
-// 3. Function to log events to the screen
+// Function to log events to the screen
 function logEvent(message) {
-    const logArea = document.getElementById('log'); // Assumes you have a <div id="log"> in your HTML
+    const logArea = document.getElementById('log');
     if (logArea) {
         logArea.innerHTML = "<p>" + message + "</p>" + logArea.innerHTML;
-    } else {
-        console.log(message);
     }
 }
 
-// 4. Main game logic for button actions
+// Main game logic for button actions
 function performAction(action) {
     switch(action) {
         case 'skip_lecture':
@@ -52,13 +49,11 @@ function performAction(action) {
             house_state -= 5;
             logEvent("Six Red Bulls and a library desk. You are a machine, but your brain is melting.");
             break;
-            
-        // If you remember your old actions, you can add them back as new 'case' blocks here
     }
     
     // Update the screen after the action finishes processing
     updateDisplay();
 }
 
-// 5. Run the display update once when the page first loads
+// Run the display update once when the page first loads
 window.onload = updateDisplay;
