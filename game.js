@@ -47,6 +47,11 @@ const ACTIONS = [
       Math.random() < .35
         ? { fx: { sanity: -10, clean: -8 }, sick: 1, msg: 'Food poisoning! You spend the rest of the week living in the bathroom.' }
         : { fx: { sanity: 3 }, msg: 'It was fine. You feel invincible.' } },
+  { name: 'Throw a house party', note: 'Everyone is invited. Even people you hate', roll: () => {
+      const r = Math.random();
+      if (r < .2) return { fx: { sanity: 12, vibes: -8, money: -50, clean: -35, grades: -5 }, noise: 2, msg: 'House party: someone broke the toilet seat and nobody owns up. The neighbours are definitely listening.' };
+      if (r < .5) return { fx: { sanity: 20, vibes: 10, money: -40, clean: -25, grades: -5 }, noise: 2, msg: 'House party: absolute scenes, 40 people in the kitchen. The neighbours are definitely listening.' };
+      return { fx: { sanity: 22, vibes: 12, money: -40, clean: -20, grades: -5 }, noise: 2, msg: 'House party: the best night of the term. Somebody is asleep in the bath. The neighbours are definitely listening.' }; } },
   { name: '3am kebab',      note: 'Questionable meat, great sauce', roll: () =>
       Math.random() < .25
         ? { fx: { sanity: -8, money: -8, clean: -8 }, sick: 1, msg: 'The kebab fights back. You are not leaving the bathroom this week.' }
@@ -102,6 +107,32 @@ const EVENTS = [
     choices: [
       { label: 'Return it with a straight face', fx: { vibes: 5 }, msg: 'Peak maturity. Nobody asks questions.' },
       { label: 'Add it to the group chat', fx: { vibes: -5, sanity: 4 }, msg: 'Funny for nine minutes. Then very awkward.' } ] },
+  { text: 'New message in the house group chat: "Hi all! Just a gentle reminder that the bins do not empty themselves :)"',
+    choices: [
+      { label: 'Take the bins out', fx: { clean: 10, vibes: 3, sanity: -2 }, msg: 'You take the bins out. Nobody says thank you.' },
+      { label: 'Reply "k" with a thumbs up', fx: { vibes: -6, sanity: 3 }, msg: 'The thumbs up lands like a brick. Three people read it and say nothing.' },
+      { label: 'Reply with a longer message about the rota', fx: { vibes: -4, clean: 4 }, msg: 'A full-blown rota debate breaks out. A rota is made. Nobody follows it.' } ] },
+  { text: 'There is a sticky note on the fridge: "Whoever keeps eating my yoghurt, I KNOW who you are."',
+    choices: [
+      { label: 'Buy them a new yoghurt', fx: { money: -2, vibes: 5 }, msg: 'Peace is restored for £2.' },
+      { label: 'Write a sarcastic reply on it', fx: { vibes: -7, sanity: 4 }, msg: 'The note war lasts a week and ends with the fridge in tears.' } ] },
+];
+
+const COMPLAINTS = [
+  { text: 'A neighbour is at the door. They have a clipboard and a really furious look.',
+    choices: [
+      { label: 'Apologise and promise to keep it down', fx: { vibes: 2, sanity: -3 }, msg: 'You lie through your teeth. They still look suspicious.' },
+      { label: 'Say "it is a student house, what did you expect?"', roll: () => Math.random() < .5
+          ? { fx: { vibes: 4, sanity: 3 }, msg: 'They have no comeback. You win the moral high ground and nothing else.' }
+          : { fx: { money: -30, vibes: -5 }, msg: 'They report you to the council. £30 fine and a formal warning.' } },
+      { label: 'Pretend nobody is home', fx: { sanity: -4, vibes: -2 }, msg: 'You hide behind the sofa for twenty minutes.' } ] },
+  { text: 'Campus security knocks at 1am. A noise complaint has been logged against your flat.',
+    choices: [
+      { label: 'Turn it right down and apologise', fx: { sanity: -3, vibes: -4 }, msg: 'The party dies a very quiet death. Someone cries in the hallway.' },
+      { label: 'Argue it is only 1am', roll: () => Math.random() < .5
+          ? { fx: { vibes: 3 }, msg: 'Security gets tired and leaves. The house treats you like a hero.' }
+          : { fx: { money: -25, vibes: -3 }, msg: 'Formal warning on your record and a £25 fine from the uni.' } },
+      { label: 'Invite security in', fx: { vibes: 6, sanity: 6, grades: -2 }, msg: 'Bizarrely, he stays for one drink. A legend of the building.' } ] },
 ];
 
 const LOSSES = {
@@ -111,13 +142,13 @@ const LOSSES = {
   vibes:  ['Housemate intervention', 'Your housemates call a meeting. The vote is 3 to 1. Your stuff is in bin bags on the lawn.'],
 };
 
-let s, week, actionsLeft, pendingEvent, sick = 0;
+let s, week, actionsLeft, pendingEvent, sick = 0, noise = 0;
 const $ = id => document.getElementById(id);
 const clamp = (v, max) => Math.max(-999, Math.min(max, v));
 
 function newGame() {
   s = { money: 250, grades: 50, sanity: 70, clean: 60, vibes: 60 };
-  week = 1; actionsLeft = ACTIONS_PER_WEEK; pendingEvent = null; sick = 0;
+  week = 1; actionsLeft = ACTIONS_PER_WEEK; pendingEvent = null; sick = 0; noise = 0;
   $('log').innerHTML = '';
   $('overlay').hidden = true;
   log('Term starts. Four housemates, one bathroom. Good luck.');
@@ -162,6 +193,7 @@ function render() {
       const r = a.roll ? a.roll() : { fx: a.fx, msg: `You chose: ${a.name}.` };
       apply(r.fx); actionsLeft--; log(r.msg, r.sick ? 'bad' : '');
       if (r.sick) { sick = r.sick; actionsLeft = 0; }
+      if (r.noise) noise = r.noise;
       if (!checkLoss()) render();
     };
     box.appendChild(b);
@@ -200,7 +232,9 @@ function endWeek() {
   apply({ money: -WEEKLY_BILLS, clean: -8, vibes: -2 });
   log(`Rent and bills: -£${WEEKLY_BILLS}.`, 'bad');
   if (checkLoss()) return render();
-  pendingEvent = EVENTS[Math.floor(Math.random() * EVENTS.length)];
+  const pool = noise > 0 && Math.random() < .75 ? COMPLAINTS : EVENTS;
+  noise = 0;
+  pendingEvent = pool[Math.floor(Math.random() * pool.length)];
   render();
 }
 
