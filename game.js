@@ -1,59 +1,26 @@
-// Initialize player stats
-let grades = 50;
-let sanity = 50;
-let housemates = 50;
-let money = 50;
-let house_state = 50;
+case 'pub_quiz':
+    money -= 15;
+    sanity += 20;
+    housemates += 15;
+    logEvent("You dragged the house to the pub quiz. You didn't win, but the pints were cold.");
+    break;
 
-// Function to update the on-screen numbers
-function updateDisplay() {
-    if (document.getElementById('grades')) document.getElementById('grades').innerText = grades;
-    if (document.getElementById('sanity')) document.getElementById('sanity').innerText = sanity;
-    if (document.getElementById('housemates')) document.getElementById('housemates').innerText = housemates;
-    if (document.getElementById('money')) document.getElementById('money').innerText = money;
-    if (document.getElementById('house_state')) document.getElementById('house_state').innerText = house_state;
-}
+case 'podcast_debate':
+    sanity -= 10;
+    housemates -= 15;
+    grades += 5;
+    logEvent("You tried to discuss a political podcast over breakfast. The kitchen is now a hostile diplomatic zone.");
+    break;
 
-// Function to log events to the screen
-function logEvent(message) {
-    const logArea = document.getElementById('log');
-    if (logArea) {
-        logArea.innerHTML = "<p>" + message + "</p>" + logArea.innerHTML;
-    }
-}
+case 'veggie_dinner':
+    money -= 10;
+    housemates += 20;
+    house_state -= 15;
+    logEvent("You cooked a massive batch of vegetarian chili for everyone. Delicious, but the sink is overflowing with pans.");
+    break;
 
-// Main game logic for button actions
-function performAction(action) {
-    switch(action) {
-        case 'skip_lecture':
-            grades -= 5;
-            sanity += 10;
-            logEvent("You hit snooze and missed your 9 AM. Blissful ignorance.");
-            break;
-            
-        case 'steal_milk':
-            housemates -= 12;
-            sanity += 5;
-            logEvent("You used someone else's milk for your cereal. The WhatsApp group is going to be tense.");
-            break;
-            
-        case 'call_parents':
-            money += 20;
-            sanity -= 8;
-            logEvent("You endured a 40-minute lecture on 'budgeting' from your mum, but you secured £20.");
-            break;
-            
-        case 'all_nighter':
-            grades += 15;
-            sanity -= 25;
-            house_state -= 5;
-            logEvent("Six Red Bulls and a library desk. You are a machine, but your brain is melting.");
-            break;
-    }
-    
-    // Update the screen after the action finishes processing
-    updateDisplay();
-}
-
-// Run the display update once when the page first loads
-window.onload = updateDisplay;
+case 'pol_sim':
+    grades -= 15;
+    sanity += 15;
+    logEvent("You spent seven hours reforming taxes in a simulation game while your actual essays gathered dust.");
+    break;
