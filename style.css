@@ -1,34 +1,89 @@
-:root{
-  --floor:#2f4a3f; --note:#f6e27a; --brick:#b5472f; --ink:#1d2a44; --paper:#f3efe6; --good:#3f8f5b; --bad:#c2402b;
-  --font:"Trebuchet MS","Segoe UI",system-ui,sans-serif;
+body {
+    background-color: #2F4036; /* Dark Green */
+    color: #E2E8F0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
 }
-@media (prefers-color-scheme:dark){:root{--paper:#1c211f;--ink:#e9e6dc;--floor:#12201a;--note:#c9b44f}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--floor);color:var(--ink);font-family:var(--font);line-height:1.45}
-main{max-width:760px;margin:0 auto;padding:16px;display:grid;gap:16px}
-header{background:var(--brick);color:#fff;padding:14px 18px;border-radius:4px;transform:rotate(-.6deg)}
-h1{margin:0;font-size:1.7rem;letter-spacing:.5px}
-header p{margin:2px 0 0}
-section{background:var(--paper);color:var(--ink);padding:16px;border-radius:4px}
-#stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 16px}
-.stat label{display:flex;justify-content:space-between;font-weight:bold;font-size:.9rem}
-.bar{height:12px;background:rgba(128,128,128,.3);border-radius:6px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--good);transition:width .3s}
-.bar i.low{background:var(--bad)}
-#actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:10px 0}
-button{font:inherit;cursor:pointer;border:2px solid var(--ink);background:var(--note);color:#1d2a44;padding:10px 12px;border-radius:4px;text-align:left}
-button small{display:block;opacity:.75}
-button:hover:not(:disabled){background:#fff3a3}
-button:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
-button:disabled{opacity:.45;cursor:not-allowed}
-#endWeek{background:var(--ink);color:var(--paper);width:100%;text-align:center;font-weight:bold}
-#event{background:var(--note);color:#1d2a44;padding:12px;border-radius:4px;margin:10px 0;border:2px dashed #1d2a44}
-#eventChoices{display:grid;gap:8px;margin-top:8px}
-h2{margin:0 0 8px;font-size:1.1rem}
-#log{list-style:none;margin:0;padding:0;max-height:220px;overflow:auto;display:grid;gap:6px}
-#log li{padding:6px 10px;border-left:4px solid var(--ink);background:rgba(128,128,128,.12)}
-#log li.good{border-color:var(--good)} #log li.bad{border-color:var(--bad)}
-#overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:grid;place-items:center;padding:16px}
-#overlay[hidden]{display:none}
-.card{background:var(--paper);padding:24px;border-radius:6px;max-width:420px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+h1 {
+    color: #FFFFFF;
+    margin-top: 0;
+}
+
+/* Polishes the stats into a neat, responsive bar */
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 30px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.stats-container p {
+    margin: 0;
+}
+
+/* Aligns the action buttons into a grid */
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+/* Styles the buttons */
+.action-btn {
+    background-color: #FEE781; /* Bright Yellow */
+    color: #1A202C;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 0.1s, background-color 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.action-btn:hover {
+    background-color: #FCD34D;
+    transform: translateY(-2px);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+.action-btn strong {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.action-btn span {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+/* Styles the event log box */
+.event-log {
+    background-color: rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    height: 250px;
+    overflow-y: auto;
+}
+
+.event-log p {
+    margin: 0 0 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.event-log p:last-child {
+    border-bottom: none;
+}
