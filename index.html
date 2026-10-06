@@ -1,51 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uni House Sim</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Uni House Sim</h1>
-    
-    <!-- Stats Display -->
-    <div id="stats" class="stats-container">
-        <p>📚 Grades: <strong id="grades">50</strong></p>
-        <p>🧠 Sanity: <strong id="sanity">50</strong></p>
-        <p>🤝 Housemates: <strong id="housemates">50</strong></p>
-        <p>💷 Money: <strong id="money">50</strong></p>
-        <p>🏠 House State: <strong id="house_state">50</strong></p>
-    </div>
+<button class="action-btn" onclick="performAction('pub_quiz')">
+    <strong>Go to the local pub quiz</strong><br>
+    <span>Trivia, pints, and bonding</span>
+</button>
 
-    <!-- Action Buttons -->
-    <div id="actions" class="actions-grid">
-        <button class="action-btn" onclick="performAction('skip_lecture')">
-            <strong>Skip a 9 AM lecture</strong><br>
-            <span>More sleep, less knowledge</span>
-        </button>
+<button class="action-btn" onclick="performAction('podcast_debate')">
+    <strong>Kitchen political debate</strong><br>
+    <span>Channel your inner podcast host</span>
+</button>
 
-        <button class="action-btn" onclick="performAction('steal_milk')">
-            <strong>Steal housemate's milk</strong><br>
-            <span>They won't notice, right?</span>
-        </button>
+<button class="action-btn" onclick="performAction('veggie_dinner')">
+    <strong>Cook a veggie house meal</strong><br>
+    <span>Cheap lentils, good vibes</span>
+</button>
 
-        <button class="action-btn" onclick="performAction('call_parents')">
-            <strong>Beg parents for cash</strong><br>
-            <span>Swallow your pride for £20</span>
-        </button>
-
-        <button class="action-btn" onclick="performAction('all_nighter')">
-            <strong>Library all-nighter</strong><br>
-            <span>Grades up, sanity destroyed</span>
-        </button>
-    </div>
-
-    <!-- Event Log -->
-    <div id="log" class="event-log">
-        <p><em>Welcome to 42 Damp Lane. Try to survive the term.</em></p>
-    </div>
-
-    <script src="game.js"></script>
-</body>
-</html>
+<button class="action-btn" onclick="performAction('pol_sim')">
+    <strong>Play political sims till 3 AM</strong><br>
+    <span>Fixing the virtual economy instead of studying</span>
+</button>
