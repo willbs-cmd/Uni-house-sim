@@ -282,3 +282,63 @@ function newGame(){
 }
 
 newGame();
+
+// --- SPECIAL EVENTS SYSTEM ---
+const specialEvents = [
+    {
+        title: "The Landlord Inspection",
+        description: "Your landlord just texted. They are 10 minutes away and the kitchen is a biohazard.",
+        choice1: { text: "Panic clean (Sanity ↓, House ↑↑)", s: -20, h: 30, m: 0, g: 0 },
+        choice2: { text: "Bribe them with a pub gift card (Money ↓↓)", s: 0, h: 0, m: -30, g: 0 }
+    },
+    {
+        title: "Wi-Fi is Down!",
+        description: "The router died right before your online exam submission.",
+        choice1: { text: "Tether your phone data (Money ↓, Grades ↑)", s: -5, h: 0, m: -15, g: 15 },
+        choice2: { text: "Accept your academic fate (Grades ↓↓, Sanity ↑)", s: 15, h: 0, m: 0, g: -25 }
+    },
+    {
+        title: "The Heating War",
+        description: "It's freezing, but putting the heating on will ruin your budget.",
+        choice1: { text: "Turn it on, I'm freezing (Money ↓↓, Sanity ↑)", s: 15, h: 0, m: -20, g: 0 },
+        choice2: { text: "Wear three jumpers (Sanity ↓)", s: -15, h: 0, m: 0, g: 0 }
+    }
+];
+
+function triggerRandomEvent() {
+    // Pick a random event from the list
+    const evt = specialEvents[Math.floor(Math.random() * specialEvents.length)];
+    const card = document.getElementById('eventCard');
+    
+    if(card) {
+        // Display the dilemma and the two choices
+        card.innerHTML = `
+            <div style="background: rgba(255,0,0,0.1); padding: 15px; border-radius: 8px; border: 1px solid red;">
+                <h3 style="margin-top:0; color: #ff6b6b;">⚠️ ${evt.title}</h3>
+                <p>${evt.description}</p>
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button class="action-btn" onclick="resolveEvent(${evt.choice1.s}, ${evt.choice1.h}, ${evt.choice1.m}, ${evt.choice1.g}, '${evt.choice1.text}')">${evt.choice1.text}</button>
+                    <button class="action-btn" onclick="resolveEvent(${evt.choice2.s}, ${evt.choice2.h}, ${evt.choice2.m}, ${evt.choice2.g}, '${evt.choice2.text}')">${evt.choice2.text}</button>
+                </div>
+            </div>
+        `;
+        card.classList.remove('hidden');
+    }
+}
+
+function resolveEvent(s, h, m, g, choiceText) {
+    // Apply the consequences
+    sanity += s;
+    money += m;
+    grades += g;
+    
+    // Check if you used 'house' or 'house_state' in your stats
+    if (typeof house_state !== 'undefined') { house_state += h; } 
+    else if (typeof house !== 'undefined') { house += h; }
+    
+    logEvent(`<strong>Disaster Resolved:</strong> You chose to "${choiceText}".`);
+    updateDisplay();
+    
+    // Hide the card again after choosing
+    document.getElementById('eventCard').classList.add('hidden');
+}
