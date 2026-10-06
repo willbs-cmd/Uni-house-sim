@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uni House Sim</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>42 Damp Lane</h1>
+    <p id="weekLabel"></p>
+  </header>
+
+  <section id="stats" aria-label="Stats"></section>
+
+  <section id="play">
+    <p id="actionsLeft"></p>
+    <div id="actions"></div>
+    <div id="event" hidden>
+      <p id="eventText"></p>
+      <div id="eventChoices"></div>
+    </div>
+    <button id="endWeek">End week</button>
+  </section>
+
+  <section id="logWrap">
+    <h2>House group chat</h2>
+    <ul id="log"></ul>
+  </section>
+
+  <div id="overlay" hidden>
+    <div class="card">
+      <h2 id="endTitle"></h2>
+      <p id="endText"></p>
+      <button id="restart">Play again</button>
+    </div>
+  </div>
+</main>
+<script src="game.js"></script>
+</body>
+</html>
