@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Uni House Sim — Chaos Edition</title>
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">THE 18+ STUDENT HOUSE SURVIVAL SIM</div>
+      <h1>🏠 Uni House Sim <span class="edition">CHAOS EDITION</span></h1>
+      <p class="subtitle">Survive 12 weeks. Get a degree. Keep your money. Avoid becoming the reason the landlord changes the locks.</p>
+    </div>
+    <div class="top-actions"><div class="term-badge" id="termBadge">WEEK 1 / 12</div><button class="tiny-btn" onclick="newGame()">↻ Restart</button></div>
+  </header>
+
+  <section class="dashboard">
+    <div class="stat-card money"><span>💷 Money</span><strong id="money">£420</strong><small>rent is coming</small></div>
+    <div class="stat-card"><span>🧠 Sanity</span><strong id="sanity">72</strong><small>questionable</small></div>
+    <div class="stat-card"><span>📚 Grades</span><strong id="grades">58</strong><small>academic weapon-ish</small></div>
+    <div class="stat-card"><span>🧹 House</span><strong id="houseState">62</strong><small>technically habitable</small></div>
+    <div class="stat-card"><span>🤝 Housemates</span><strong id="housemates">65</strong><small>still speaking to you</small></div>
+    <div class="stat-card"><span>⚡ Energy</span><strong id="energy">70</strong><small id="energyText">functional-ish</small></div>
+    <div class="stat-card"><span>⭐ Reputation</span><strong id="reputation">35</strong><small>house legend potential</small></div>
+  </section>
+
+  <main class="game-grid">
+    <section class="panel main-panel">
+      <div class="panel-head">
+        <div><span class="section-kicker">YOUR DAY</span><h2>What are you doing?</h2></div>
+        <div class="actions-left" id="actionsLeft">3 actions left</div>
+      </div>
+      <div id="categories" class="categories"></div>
+      <div id="actions" class="actions-grid"></div>
+      <div class="forecast">
+        <div><span>📅</span><b>Next deadline</b><small id="deadline">Essay due Friday. You haven't started.</small></div>
+        <div><span>💸</span><b>Weekly bills</b><small>£95 comes out when the week ends.</small></div>
+        <div><span>🎲</span><b>Chaos rating</b><small id="chaos">Surprisingly sensible</small></div>
+      </div>
+    </section>
+
+    <aside class="panel log-panel">
+      <div class="panel-head"><div><span class="section-kicker">HOUSE GROUP CHAT</span><h2>Live feed</h2></div></div>
+      <div id="eventLog" class="event-log"></div>
+      <div class="mini-tip">💡 <b>Tip:</b> you don't need to be good at everything. You just need to survive.</div>
+    </aside>
+  </main>
+
+  <section class="panel choices-panel">
+    <div class="panel-head"><div><span class="section-kicker">RANDOM DISASTER GENERATOR</span><h2>What could possibly go wrong?</h2></div></div>
+    <div id="eventCard" class="event-card hidden"></div>
+  </section>
+
+  <section class="panel achievements-panel">
+    <div class="panel-head"><div><span class="section-kicker">TROPHY CABINET</span><h2>Achievements</h2></div></div>
+    <div id="achievements" class="achievement-grid"></div>
+  </section>
+
+  <div id="toast" class="toast"></div>
+  <footer><span>🔞 Adult humour mode • Everyone in the simulation is an adult.</span><span>Made for people who think “I'll do it tomorrow” is a study strategy.</span></footer>
+</div>
+</body>
+</html>
