@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uni House Sim</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -9,7 +10,7 @@
     <h1>Uni House Sim</h1>
     
     <!-- Stats Display -->
-    <div id="stats" style="margin-bottom: 20px; font-size: 18px;">
+    <div id="stats" class="stats-container">
         <p>📚 Grades: <strong id="grades">50</strong></p>
         <p>🧠 Sanity: <strong id="sanity">50</strong></p>
         <p>🤝 Housemates: <strong id="housemates">50</strong></p>
@@ -18,7 +19,7 @@
     </div>
 
     <!-- Action Buttons -->
-    <div id="actions">
+    <div id="actions" class="actions-grid">
         <button class="action-btn" onclick="performAction('skip_lecture')">
             <strong>Skip a 9 AM lecture</strong><br>
             <span>More sleep, less knowledge</span>
@@ -41,7 +42,7 @@
     </div>
 
     <!-- Event Log -->
-    <div id="log" style="margin-top: 30px; padding: 10px; border: 1px solid #ccc; height: 200px; overflow-y: auto;">
+    <div id="log" class="event-log">
         <p><em>Welcome to 42 Damp Lane. Try to survive the term.</em></p>
     </div>
 
