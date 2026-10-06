@@ -4,20 +4,26 @@ import streamlit.components.v1 as components
 # Set the page layout to wide
 st.set_page_config(page_title="Uni House Sim", layout="wide")
 
-# Inject CSS to hide Streamlit's default UI, remove all padding, and force fullscreen
+# Inject CSS to completely hide Streamlit's default UI and remove all padding
 st.markdown("""
     <style>
         /* Hide the top header and bottom footer */
         header {visibility: hidden;}
         footer {visibility: hidden;}
         
-        /* Remove padding around the main app container */
+        /* Remove all padding and width restrictions from the main app container */
         .block-container {
             padding-top: 0rem !important;
             padding-bottom: 0rem !important;
             padding-left: 0rem !important;
             padding-right: 0rem !important;
             max-width: 100% !important;
+        }
+        
+        /* Force the iframe to stretch the full height of the browser window without borders */
+        iframe {
+            height: 100vh !important;
+            border: none !important;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -38,4 +44,4 @@ combined_html = html.replace(
 )
 
 # Render the game inside Streamlit
-components.html(combined_html, height=820, scrolling=False)
+components.html(combined_html, scrolling=True)
