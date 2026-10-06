@@ -1,19 +1,50 @@
-<button class="action-btn" onclick="performAction('skip_lecture')">
-    <strong>Skip a 9 AM lecture</strong><br>
-    <span>More sleep, less knowledge</span>
-</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uni House Sim</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Uni House Sim</h1>
+    
+    <!-- Stats Display -->
+    <div id="stats" style="margin-bottom: 20px; font-size: 18px;">
+        <p>📚 Grades: <strong id="grades">50</strong></p>
+        <p>🧠 Sanity: <strong id="sanity">50</strong></p>
+        <p>🤝 Housemates: <strong id="housemates">50</strong></p>
+        <p>💷 Money: <strong id="money">50</strong></p>
+        <p>🏠 House State: <strong id="house_state">50</strong></p>
+    </div>
 
-<button class="action-btn" onclick="performAction('steal_milk')">
-    <strong>Steal housemate's milk</strong><br>
-    <span>They won't notice, right?</span>
-</button>
+    <!-- Action Buttons -->
+    <div id="actions">
+        <button class="action-btn" onclick="performAction('skip_lecture')">
+            <strong>Skip a 9 AM lecture</strong><br>
+            <span>More sleep, less knowledge</span>
+        </button>
 
-<button class="action-btn" onclick="performAction('call_parents')">
-    <strong>Beg parents for cash</strong><br>
-    <span>Swallow your pride for £20</span>
-</button>
+        <button class="action-btn" onclick="performAction('steal_milk')">
+            <strong>Steal housemate's milk</strong><br>
+            <span>They won't notice, right?</span>
+        </button>
 
-<button class="action-btn" onclick="performAction('all_nighter')">
-    <strong>Library all-nighter</strong><br>
-    <span>Grades up, sanity destroyed</span>
-</button>
+        <button class="action-btn" onclick="performAction('call_parents')">
+            <strong>Beg parents for cash</strong><br>
+            <span>Swallow your pride for £20</span>
+        </button>
+
+        <button class="action-btn" onclick="performAction('all_nighter')">
+            <strong>Library all-nighter</strong><br>
+            <span>Grades up, sanity destroyed</span>
+        </button>
+    </div>
+
+    <!-- Event Log -->
+    <div id="log" style="margin-top: 30px; padding: 10px; border: 1px solid #ccc; height: 200px; overflow-y: auto;">
+        <p><em>Welcome to 42 Damp Lane. Try to survive the term.</em></p>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
