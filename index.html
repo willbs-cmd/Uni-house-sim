@@ -1,43 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Uni House Sim</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<main>
-  <header>
-    <h1>42 Damp Lane</h1>
-    <p id="weekLabel"></p>
-  </header>
+<button class="action-btn" onclick="performAction('skip_lecture')">
+    <strong>Skip a 9 AM lecture</strong><br>
+    <span>More sleep, less knowledge</span>
+</button>
 
-  <section id="stats" aria-label="Stats"></section>
+<button class="action-btn" onclick="performAction('steal_milk')">
+    <strong>Steal housemate's milk</strong><br>
+    <span>They won't notice, right?</span>
+</button>
 
-  <section id="play">
-    <p id="actionsLeft"></p>
-    <div id="actions"></div>
-    <div id="event" hidden>
-      <p id="eventText"></p>
-      <div id="eventChoices"></div>
-    </div>
-    <button id="endWeek">End week</button>
-  </section>
+<button class="action-btn" onclick="performAction('call_parents')">
+    <strong>Beg parents for cash</strong><br>
+    <span>Swallow your pride for £20</span>
+</button>
 
-  <section id="logWrap">
-    <h2>House group chat</h2>
-    <ul id="log"></ul>
-  </section>
-
-  <div id="overlay" hidden>
-    <div class="card">
-      <h2 id="endTitle"></h2>
-      <p id="endText"></p>
-      <button id="restart">Play again</button>
-    </div>
-  </div>
-</main>
-<script src="game.js"></script>
-</body>
-</html>
+<button class="action-btn" onclick="performAction('all_nighter')">
+    <strong>Library all-nighter</strong><br>
+    <span>Grades up, sanity destroyed</span>
+</button>
